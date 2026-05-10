@@ -1,0 +1,60 @@
+OPSERVATORIJA (id_opservatorije [PK], naziv, grad, drzava, koordinata_latituda, koordinata_longituda, nadmorska_visina, tip_opservatorije)
+
+RESURS (id_resursa [PK], naziv, tip, jedinica_mere, dodatni_opis)
+
+INVENTAR_RESURSA (id_opservatorije [PK][FK], id_resursa [PK][FK], kolicina_na_stanju)
+- id_opservatorije referencira OPSERVATORIJA(id_opservatorije)
+- id_resursa referencira RESURS(id_resursa)
+
+TIP_ALATA (id_tipa_alata [PK], naziv, opis)
+
+ALAT (id_alata [PK], identifikacioni_broj, id_tipa_alata [FK], id_opservatorije [FK], datum_nabavke, datum_proizvodnje)
+- id_tipa_alata referencira TIP_ALATA(id_tipa_alata)
+- id_opservatorije referencira OPSERVATORIJA(id_opservatorije)
+
+ISTRAZIVAC (id_istrazivaca [PK], ime, prezime, datum_rodjenja, email, institucija, akademsko_zvanje, oblast_specijalizacije, godine_iskustva)
+
+TEORIJA (id_teorije [PK], naziv, oznaka, dodatni_opis)
+
+NEBESKI_OBJEKAT (id_objekta [PK], naziv, tip, rektascenzija, deklinacija, prividna_magnituda)
+
+EKSPERIMENT (id_eksperimenta [PK], naziv, tip, id_teorije [FK])
+- id_teorije referencira TEORIJA(id_teorije)
+
+DIZAJNER_EKSPERIMENTA (id_eksperimenta [PK][FK], id_istrazivaca [PK][FK])
+- id_eksperimenta referencira EKSPERIMENT(id_eksperimenta)
+- id_istrazivaca referencira ISTRAZIVAC(id_istrazivaca)
+
+CILJ_POSMATRANJA (id_eksperimenta [PK][FK], id_objekta [PK][FK])
+- id_eksperimenta referencira EKSPERIMENT(id_eksperimenta)
+- id_objekta referencira NEBESKI_OBJEKAT(id_objekta)
+
+POTREBAN_RESURS_ZA_EKSPERIMENT (id_eksperimenta [PK][FK], id_resursa [PK][FK], procenjena_kolicina)
+- id_eksperimenta referencira EKSPERIMENT(id_eksperimenta)
+- id_resursa referencira RESURS(id_resursa)
+
+POTREBAN_ALAT_ZA_EKSPERIMENT (id_eksperimenta [PK][FK], id_tipa_alata [PK][FK])
+- id_eksperimenta referencira EKSPERIMENT(id_eksperimenta)
+- id_tipa_alata referencira TIP_ALATA(id_tipa_alata)
+
+IZVODJENJE (id_izvodjenja [PK], id_eksperimenta [FK], id_opservatorije [FK], datum, status)
+- id_eksperimenta referencira EKSPERIMENT(id_eksperimenta)
+- id_opservatorije referencira OPSERVATORIJA(id_opservatorije)
+
+TIM_IZVODJACA (id_izvodjenja [PK][FK], id_istrazivaca [PK][FK], opis_uloge, putanja_do_beleski)
+- id_izvodjenja referencira IZVODJENJE(id_izvodjenja)
+- id_istrazivaca referencira ISTRAZIVAC(id_istrazivaca)
+
+SESIJA (id_sesije [PK], id_izvodjenja [FK], id_opservatorije [FK], datum, vreme_pocetka, vreme_zavrsetka, oblacnost_procenat, seeing_lucne_sekunde, vlaznost_vazduha, temperatura, brzina_vetra)
+- id_izvodjenja referencira IZVODJENJE(id_izvodjenja)
+- id_opservatorije referencira OPSERVATORIJA(id_opservatorije)
+
+UTROSENI_RESURSI_SESIJE (id_sesije [PK][FK], id_resursa [PK][FK], utrosena_kolicina)
+- id_sesije referencira SESIJA(id_sesije)
+- id_resursa referencira RESURS(id_resursa)
+
+ISKORISCENI_ALATI_SESIJE (id_sesije [PK][FK], id_alata [PK][FK])
+- id_sesije referencira SESIJA(id_sesije)
+- id_alata referencira ALAT(id_alata)
+
+KORISNIK (id_korisnika [PK], korisnicko_ime, lozinka)
