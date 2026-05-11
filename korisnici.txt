@@ -1,0 +1,10 @@
+admin_obs,Pass123!
+ana_petrovic,AstroAna85
+marko_j,KosmoMarko90
+elena_eso,StarGazer78
+thomas_m,ExoPlanets82
+sofia_h,AstroCanarias95
+saturnistaken,SaturnPass123
+guest1,guestpass
+guest2,guestpass
+guest3,guestpass
