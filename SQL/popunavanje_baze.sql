@@ -200,3 +200,77 @@ INSERT INTO ALAT (identifikacioni_broj, id_tipa_alata, id_opservatorije, datum_n
 ('OKU-OBS8-001', 10, 8, '2006-05-10', NULL),
 ('OKU-OBS9-001', 10, 9, '2004-12-15', NULL),
 ('MON-OBS13-001', 6, 13, '2002-06-30', '2001-10-01');
+
+INSERT INTO EKSPERIMENT (naziv, tip, id_teorije) VALUES
+('Fotometrija Betelgeuzea', 'fotometrija', 2),
+('Spektroskopija Siriusa', 'spektroskopija', 2),
+('Pracenje tranzita 51 Pegasi b', 'fotometrija', 4),
+('Merenje crvenog pomaka M87', 'spektroskopija', 8),
+('Astrometrija Proxima Centauri', 'astrometrija', 1),
+('Radio posmatranje Krabe maglina', 'radio astronomija', 11),
+('Interferometrija Andromede', 'interferometrija', 7),
+('Pracenje rotacije Jupitra', 'fotometrija', 10),
+('Spektroskopija Orionove maglina', 'spektroskopija', 9),
+('Merenje parallakse Polaris', 'astrometrija', 1),
+('Fotometrija Plejada', 'fotometrija', 2),
+('Posmatranje gravitacionih soca', 'fotometrija', 3),
+('Spektroskopija Vege', 'spektroskopija', 2),
+('Pracenje pulzara u Krabi', 'radio astronomija', 11),
+('Kosmoloski pomak M33', 'spektroskopija', 8),
+('Fotometrija Antaresa', 'fotometrija', 2),
+('Astrometrija Omega Kentauri', 'astrometrija', 1),
+('Posmatranje akrecionog diska M87', 'radio astronomija', 12),
+('Merenje atmosfere Saturna', 'spektroskopija', 10),
+('Pracenje egzoplanete oko Vege', 'fotometrija', 4),
+('Spektroskopija Rigela', 'spektroskopija', 2),
+('Fotometrija Deneba', 'fotometrija', 2),
+('Radio posmatranje galaktickog centra', 'radio astronomija', 7),
+('Interferometrija binarnih zvezda', 'interferometrija', 2),
+('Pracenje komete Halley', 'fotometrija', 1),
+('Merenje rotacione krive M31', 'spektroskopija', 7),
+('Posmatranje supernovine ostatka', 'radio astronomija', 11),
+('Fotometrija Spike', 'fotometrija', 2),
+('Astrometrija asteroid Ceres', 'astrometrija', 1),
+('Merenje Hablove konstante', 'spektroskopija', 8);
+
+INSERT INTO DIZAJNER_EKSPERIMENTA (id_eksperimenta, id_istrazivaca) VALUES
+(1, 1), (1, 12), (2, 3), (3, 4), (3, 8),
+(4, 6), (5, 5), (5, 14), (6, 7), (7, 3),
+(8, 10), (9, 1), (10, 14), (11, 12), (12, 6),
+(13, 16), (14, 7), (15, 2), (15, 11), (16, 9),
+(17, 5), (18, 13), (19, 10), (20, 17), (21, 16),
+(22, 1), (23, 7), (24, 3), (25, 15), (26, 19),
+(27, 7), (28, 12), (29, 14), (30, 6);
+
+INSERT INTO CILJ_POSMATRANJA (id_eksperimenta, id_objekta) VALUES
+(1, 1), (2, 2), (3, 15), (4, 12), (5, 16),
+(6, 9), (7, 3), (8, 4), (9, 8), (10, 17),
+(11, 10), (12, 3), (12, 12), (13, 26), (14, 9),
+(15, 30), (16, 29), (17, 11), (18, 12), (19, 5),
+(20, 26), (21, 25), (22, 27), (23, 3), (24, 1),
+(24, 2), (25, 13), (26, 3), (27, 9), (28, 28),
+(29, 14), (30, 3), (30, 12);
+
+INSERT INTO POTREBAN_RESURS_ZA_EKSPERIMENT (id_eksperimenta, id_resursa, procenjena_kolicina) VALUES
+(1, 1, 50.00), (1, 5, 2.00), (2, 8, 1.00), (2, 3, 500.00),
+(3, 4, 3.00), (3, 3, 1000.00), (4, 8, 1.00), (4, 3, 800.00),
+(5, 3, 200.00), (6, 11, 2000.00), (7, 1, 100.00), (7, 3, 1500.00),
+(8, 5, 2.00), (8, 3, 600.00), (9, 7, 1.00), (9, 1, 80.00),
+(10, 3, 300.00), (11, 4, 4.00), (11, 5, 4.00), (12, 4, 2.00),
+(13, 8, 1.00), (13, 3, 400.00), (14, 11, 3000.00), (15, 8, 1.00),
+(16, 5, 3.00), (16, 1, 60.00), (17, 3, 250.00), (18, 11, 4000.00),
+(19, 8, 1.00), (19, 3, 700.00), (20, 4, 3.00), (20, 3, 900.00),
+(21, 8, 1.00), (22, 5, 2.00), (23, 11, 5000.00), (24, 1, 120.00),
+(25, 4, 1.00), (26, 8, 1.00), (27, 11, 2500.00), (28, 5, 3.00),
+(29, 3, 150.00), (30, 8, 2.00), (30, 3, 1200.00);
+
+INSERT INTO POTREBAN_ALAT_ZA_EKSPERIMENT (id_eksperimenta, id_tipa_alata) VALUES
+(1, 3), (1, 6), (2, 4), (2, 6), (3, 3),
+(3, 6), (4, 4), (5, 1), (5, 6), (6, 7),
+(7, 8), (8, 1), (8, 3), (9, 4), (9, 1),
+(10, 1), (10, 6), (11, 3), (11, 6), (12, 1),
+(12, 9), (13, 4), (14, 7), (15, 4), (16, 3),
+(17, 1), (17, 6), (18, 7), (19, 4), (20, 3),
+(20, 9), (21, 4), (22, 3), (23, 7), (24, 8),
+(25, 1), (26, 4), (27, 7), (28, 3), (29, 1),
+(30, 4), (30, 8);
