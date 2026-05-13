@@ -374,7 +374,6 @@ INSERT INTO IZVODJENJE (id_eksperimenta, id_opservatorije, datum, status) VALUES
 (27, 11, '2028-01-05', 'planirano'), (28, 1, '2028-01-10', 'zavrseno neuspesno'),
 (29, 6, '2028-01-15', 'zavrseno uspesno'), (30, 13, '2028-01-20', 'zapoceto');
 
-
 INSERT INTO TIM_IZVODJACA (id_izvodjenja, id_istrazivaca, opis_uloge, putanja_do_beleski) VALUES
 (1, 1, 'Glavni posmatrac', '/docs/beleske_izv1_ana.pdf'), (1, 2, 'Operater teleskopa', NULL),
 (2, 3, 'Glavni posmatrac', '/docs/beleske_izv2.txt'), (3, 4, 'Analiticar', NULL),

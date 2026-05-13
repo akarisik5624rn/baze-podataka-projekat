@@ -2,16 +2,16 @@ USE astronomija;
 
 CREATE OR REPLACE VIEW V_Eksperimenti_Statistika AS
 SELECT 
-    e.naziv AS eksperiment, 
-    e.tip, 
-    COUNT(i.id_izvodjenja) AS ukupan_broj_izvodjenja
+    e.naziv AS Ime_Eksperimenta, 
+    t.naziv AS Naziv_Teorije, 
+    COUNT(de.id_istrazivaca) AS Broj_Dizajnera
 FROM EKSPERIMENT e
-JOIN IZVODJENJE i ON e.id_eksperimenta = i.id_eksperimenta
-JOIN OPSERVATORIJA o ON i.id_opservatorije = o.id_opservatorije
+JOIN TEORIJA t ON e.id_teorije = t.id_teorije
+JOIN DIZAJNER_EKSPERIMENTA de ON e.id_eksperimenta = de.id_eksperimenta
 GROUP BY 
-    e.id_eksperimenta, e.naziv, e.tip
+    e.id_eksperimenta, e.naziv, t.naziv
 HAVING 
-    COUNT(DISTINCT o.id_opservatorije) > 1;
+    COUNT(de.id_istrazivaca) > 1;
 
 DELIMITER //
 CREATE PROCEDURE ZabeleziUtrosakResursa (
