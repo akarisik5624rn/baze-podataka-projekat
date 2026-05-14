@@ -13,23 +13,26 @@ public class LoginForm extends JFrame {
 
     public LoginForm() {
         setTitle("Prijava");
-        setSize(350, 200);
+        setSize(350, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(4, 2, 10, 10));
+        setLayout(new BorderLayout());
+        JPanel panel = new JPanel(new GridLayout(4, 2, 20, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        add(panel, BorderLayout.CENTER);
 
-        add(new JLabel("Korisnicko ime:"));
+        panel.add(new JLabel("Korisnicko ime:"));
         korisnickoImeField = new JTextField();
-        add(korisnickoImeField);
+        panel.add(korisnickoImeField);
 
-        add(new JLabel("Lozinka:"));
+        panel.add(new JLabel("Lozinka:"));
         lozinkaField = new JPasswordField();
-        add(lozinkaField);
+        panel.add(lozinkaField);
 
         JButton loginBtn = new JButton("Prijavi se");
         JButton registracijaBtn = new JButton("Registruj se");
-        add(loginBtn);
-        add(registracijaBtn);
+        panel.add(loginBtn);
+        panel.add(registracijaBtn);
 
         loginBtn.addActionListener(e -> prijava());
         registracijaBtn.addActionListener(e -> {

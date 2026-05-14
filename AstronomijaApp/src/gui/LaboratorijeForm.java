@@ -13,7 +13,7 @@ public class LaboratorijeForm extends JFrame {
     private DefaultTableModel model;
     private JComboBox<String> opservatorijeCB;
 
-    public LaboratorijeForm() {
+    public LaboratorijeForm(int idKorisnika, String korisnickoIme) {
         setTitle("Pregled laboratorija i istrazivaca");
         setSize(800, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,6 +44,7 @@ public class LaboratorijeForm extends JFrame {
 
         prikaziBtn.addActionListener(e -> ucitajIstrazivace());
         nazadBtn.addActionListener(e -> {
+            new GlavniMeni(idKorisnika, korisnickoIme).setVisible(true);
             dispose();
         });
 
@@ -52,7 +53,9 @@ public class LaboratorijeForm extends JFrame {
 
     private void ucitajOpservatorije() {
         try (Connection conn = DBKonekcija.getKonekcija()) {
-            String sql = "SELECT naziv FROM OPSERVATORIJA ORDER BY naziv";
+            String sql = "SELECT DISTINCT o.naziv FROM OPSERVATORIJA o " +
+                    "JOIN IZVODJENJE iz ON o.id_opservatorije = iz.id_opservatorije " +
+                    "ORDER BY o.naziv";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {

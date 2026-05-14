@@ -16,20 +16,23 @@ public class GlavniMeni extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(4, 1, 10, 10));
+        setLayout(new BorderLayout());
+        JPanel panel = new JPanel(new GridLayout(4, 1, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        add(panel, BorderLayout.CENTER);
 
         JButton laboratorijeBtn = new JButton("Pregled laboratorija i istrazivaca");
         JButton azuriranjeBtn = new JButton("Azuriranje korisnickog imena i lozinke");
         JButton brisanjeBtn = new JButton("Brisanje naloga");
         JButton odjavBtn = new JButton("Odjava");
 
-        add(laboratorijeBtn);
-        add(azuriranjeBtn);
-        add(brisanjeBtn);
-        add(odjavBtn);
+        panel.add(laboratorijeBtn);
+        panel.add(azuriranjeBtn);
+        panel.add(brisanjeBtn);
+        panel.add(odjavBtn);
 
         laboratorijeBtn.addActionListener(e -> {
-            new LaboratorijeForm().setVisible(true);
+            new LaboratorijeForm(idKorisnika, korisnickoIme).setVisible(true);
             dispose();
         });
 
