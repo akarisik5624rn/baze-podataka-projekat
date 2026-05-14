@@ -1,5 +1,8 @@
 USE astronomija;
 
+-- Prikazuje statistiku eksperimenata grupisanu po teorijskom
+-- okviru koji prate. Za svaki eksperiment prikazuje naziv,
+-- teoriju koju prati i broj istraživača koji su ga dizajnirali.
 CREATE OR REPLACE VIEW V_Eksperimenti_Statistika AS
 SELECT 
     e.naziv AS Ime_Eksperimenta, 
@@ -13,6 +16,9 @@ GROUP BY
 HAVING 
     COUNT(de.id_istrazivaca) > 1;
 
+-- Beleži potrošnju resursa tokom posmatračke sesije i
+-- automatski ažurira inventar opservatorije. Ako na stanju
+-- nema dovoljno resursa, transakcija se poništava (ROLLBACK) i inventar ostaje nepromenjen.
 DELIMITER //
 CREATE PROCEDURE ZabeleziUtrosakResursa (
     IN p_id_sesije INT,
@@ -57,6 +63,9 @@ BEGIN
 END //
 DELIMITER ;
 
+
+-- Vraća ukupan broj posmatračkih sesija koje su održane
+-- u okviru svih izvođenja datog eksperimenta.
 DELIMITER //
 CREATE FUNCTION BrojSesijaZaEksperiment (p_id_eksperimenta INT)
 RETURNS INT
